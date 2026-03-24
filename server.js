@@ -26,3 +26,13 @@ app.get('/hello', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
+
+
+// -----------------------------------------------------------
+const PlayerModel = require('./models/playerModel');
+const playerModel = new PlayerModel();
+
+app.get('/submit', (req, res) =>{
+  playerModel.create("lab8", "lab8");
+  res.redirect('/index.html');
+});
