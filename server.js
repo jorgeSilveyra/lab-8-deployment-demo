@@ -17,9 +17,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Set up a route handler for GET requests to the root URL ('/').
-app.get('/', (req, res) => {
-  // Send a plain text response of "Hello, World!" to the client.
-  res.send('Hello, World!');
+app.get('/hello', (req, res) => {
+  res.redirect('/index.html');
 });
 
 // Start the server and make it listen on the specified port.
