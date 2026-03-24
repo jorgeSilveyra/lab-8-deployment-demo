@@ -10,7 +10,7 @@ const PORT = 3000;
 const path = require('path');
 
 // Middleware for handling static files
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
