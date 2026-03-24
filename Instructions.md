@@ -103,12 +103,13 @@ app.listen(port, () => {
 });
 ```
 Middleware must be defined BEFORE your routes or req.body will be undefined.
+
 These examples are provided to guide you in handling POST requests and using middleware to parse and process data.
 ---
 
 ## 3. Lab Requirements
 
-You will extend your Lab 6 system into a **web-based application**.
+You will extend your Lab 7 system into a **web-based application**.
 
 Your system must support:
 - A command-line interface (CLI)
@@ -134,7 +135,7 @@ Both must use the **same database**.
 ## MVC Expectations
 
 ### Models
-- Reuse Lab 6 models
+- Reuse Lab 7 models
 - Handle database logic
 
 ### Views
