@@ -14,6 +14,8 @@ class PlayerModel {
     const stmt = this.db.prepare(query);
 
     // The `run()` method executes the prepared query, replacing the `?` placeholders with actual values.
+    console.log(username);
+    console.log(email);
     const info = stmt.run(username, email, createdAt);
 
     // Returning the new player data, including the generated player ID and the creation timestamp.
