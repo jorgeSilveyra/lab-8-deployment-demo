@@ -11,7 +11,8 @@ INSERT INTO Players VALUES
 INSERT INTO GameDefinitions VALUES 
 (NULL, "Tetris", "Player drops and connects blocks to form rows and gain points. The game ends when the blocks hit the top of the screen."),
 (NULL, "Pac-Man", "Player controls Pac-Man and goes around a map eating ghosts, cherries, and dots for points. The game ends when Pac-Man hits a ghost when it cannot eat ghosts."),
-(NULL, "Snake", "Player controls a snake that eats apples for points and grows every time an apple is eaten. The game ends when the snake collides with itself.");
+(NULL, "Snake", "Player controls a snake that eats apples for points and grows every time an apple is eaten. The game ends when the snake collides with itself."),
+(NULL, "DavidGame", "TBD");
 
 INSERT INTO GamePlays VALUES
 (NULL, 1, 1, 1200),
