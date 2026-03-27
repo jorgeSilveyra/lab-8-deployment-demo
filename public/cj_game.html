@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
+    <head> 
+        <title>Typing Game</title>
+         <link rel="stylesheet" href="css/cj_game_styles.css">
+    </head>
     <body>
-        <link rel="stylesheet" href="styles/cj_game_styles.css">
 
        <div class = "Typing Game">
             <h1>Touch Typing Game</h1>
             
             <p>Type all of the letters as fast as you can!</p>
 
-            <p>abcdefghijklmnopqrstuvwxyz!?$%</p>
+            <p id ="target-text">abcdefghijklmnopqrstuvwxyz!?$%</p>
             
-            <div id ="timer" class = "working"> 
+            <div id ="timer"> 
                 <button id="start-button">Start</button>
-                <input id="string-input" type = "string">
+                <input id="string-input" type = "text">
                 <button id="finish">Finished</button>
                 <p id="timer-text">00:00</p>
-                <div class="edit-controls">
-            </div>
                 <p id="timer-popup"></p>
             </div>
         </div>
+
+        <script src ="js/cj_game.js"></script>
+    </body>
 </html>
