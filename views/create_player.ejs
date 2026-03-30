@@ -2,19 +2,24 @@
 <html lang="en">
 
 <body>
-    <h1>create Player</h1>
+    <h1>Create Player</h1>
     
-    <form method="POST" action="/authenticate">
+    <form method="POST" action="/add_player_tuple">
         <p>
         <label>Username:</label>
         <input type="text" name="username">
         </p>
 
-        <button type="submit">Create</button>
+        <p>
+        <label>Email:</label>
+        <input type="text" name="email">
+        </p>
+
+        <button type="submit">Create Player</button>
     </form>
 
     <p>
-        <a href="/">Back to Homepage</a>
+        <a href="/home">Back to Homepage</a>
     </p>
 </body>
 

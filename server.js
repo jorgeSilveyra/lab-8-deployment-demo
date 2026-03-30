@@ -10,6 +10,12 @@ const PORT = 3000;
 
 const path = require('path');
 
+// Set up a route handler for GET requests to the root URL ('/').
+// Note this code block is above the static files as otherwise it will render index.html first instead of the ejs file
+app.get('/', (req, res) => {
+  res.render('login');
+});
+
 // Middleware for handling static files
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -19,23 +25,23 @@ app.set('views', path.join(__dirname, 'views'));
 
 const PlayerModel = require('./models/playerModel');
 const playerModel = new PlayerModel();
+let username = "";
+let user_id = null;
 
-// Set up a route handler for GET requests to the root URL ('/').
-app.get('/login', (req, res) => {
-  res.render('login');
-});
 
 app.post('/authenticate', (req, res) => {
-  const username = req.body.username;
+  const req_username = req.body.username;
 
-  const user_id = playerModel.get_player_id(username);
+  const req_user_id = playerModel.get_player_id(req_username);
 
-  if(user_id == null){
-    console.log(`[ERROR] Player with username ${username} not found in Players.`);
+  if(req_user_id == null){
+    console.log(`[ERROR] Player with username ${req_username} not found in Players.`);
     res.redirect("/create_player");
     return;
   }
 
+  username = req_username;
+  user_id = req_user_id;
   res.redirect("/home");
 });
 
@@ -43,8 +49,19 @@ app.get('/create_player', (req, res) => {
   res.render("create_player");
 });
 
+app.post('/add_player_tuple', (req, res) =>{
+  playerModel.create(req.body.username, req.body.email);
+
+  username = req.body.username;
+  user_id = playerModel.get_player_id(req.body.username);
+
+  res.redirect("/home");
+});
+
 app.get('/home', (req, res) => {
-  res.redirect("/index.html");
+  res.render("home", {
+    username: username
+  });
 });
 
 // Start the server and make it listen on the specified port.
@@ -57,10 +74,11 @@ app.listen(PORT, () => {
 
 // David Game ------------------------------------------------------------
 const GamePlayModel = require('./models/gamePlayModel');
+const { NONAME } = require('dns');
 const gamePlayModel = new GamePlayModel();
 
 app.get('/david', (req, res, next) => {
-  res.render('david_game');
+  res.redirect("/david_game.html");
 });
 
 app.post('/david_submit', (req, res) => {
