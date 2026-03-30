@@ -131,8 +131,8 @@ function reset_problem(){
     const checkmarkImg = document.getElementById("checkmark_img");
     const xImg = document.getElementById("x_img");
 
-    inputBox.remove();
-    inputBoxLabel.remove();
+    inputBox?.remove();
+    inputBoxLabel?.remove();
 
     //here, add ? so that it will only run if it is not null
     checkmarkImg?.remove();
@@ -142,15 +142,39 @@ function reset_problem(){
 }
 
 problemButton.addEventListener('click', () => {
-    create_problem(get_random_int(0, 12), get_random_int(0, 12));
+    gameOver = false;
+    points = 0;
+
+    display_points();
+
+    const failText = document.getElementById("fail_text");
+    failText?.remove();
+
+    reset_problem();
 });
 
-function endGame(fail_message){
+async function endGame(fail_message){
     gameOver = true;
 
     const failText = document.createElement("p");
-    failText.textContent = `You ${fail_message} and the game has ended. Your score has been recorded! Thank you for playing!`;
+    failText.textContent = `You ${fail_message} and the game has ended.`;
+    failText.id = "fail_text"
 
     endSection.append(failText);
-}
+    try{
+        await fetch("/submit_score", {
+            method: "POST",
+            body: JSON.stringify({
+                score: points,
+                game_id: 3
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
+    } catch (e){
+        console.log(e);
+    }
 
+    failText.textContent = `You ${fail_message} and the game has ended. Your score has been recorded. Thank you for playing!`;
+}
