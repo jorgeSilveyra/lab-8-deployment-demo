@@ -65,6 +65,16 @@ class ReportModel {
 
         return info.avg_score;
     }
+
+    get_top_5_players(game_id){
+        const query = "SELECT p.username, gp.score FROM GamePlays gp JOIN Players p ON gp.player_id = p.player_id WHERE gp.game_id = ? ORDER BY gp.score DESC LIMIT 5";
+
+        const stmt = this.db.prepare(query);
+
+        const info = stmt.all(game_id);
+
+        return info;
+    }
 }
 
 module.exports = ReportModel;
