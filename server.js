@@ -4,6 +4,7 @@ const express = require('express');
 // Create an instance of an Express application. This app object will be used to define routes and middleware.
 const app = express();
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Define a constant for the port number on which the server will listen.
 const PORT = 3000;
@@ -24,7 +25,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 const PlayerModel = require('./models/playerModel');
+const GamePlayModel = require('./models/gamePlayModel');
 const playerModel = new PlayerModel();
+const gamePlayModel = new GamePlayModel();
 let username = "";
 let user_id = null;
 
@@ -64,18 +67,13 @@ app.get('/home', (req, res) => {
   });
 });
 
-// Start the server and make it listen on the specified port.
-// Once the server starts, it logs a message to the console indicating where it is running.
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+app.post('/submit_score', (req, res) => {
+  gamePlayModel.create(user_id, req.body.game_id, req.body.score);
+  res.sendStatus(200);
 });
 
 
-
-// David Game ------------------------------------------------------------
-const GamePlayModel = require('./models/gamePlayModel');
-const { NONAME } = require('dns');
-const gamePlayModel = new GamePlayModel();
+// David Game -----------------------------------------------------------
 
 app.get('/david', (req, res, next) => {
   res.redirect("/david_game.html");
@@ -103,3 +101,8 @@ app.post('/david_submit', (req, res) => {
   res.redirect('/index.html');
 });
 
+// Start the server and make it listen on the specified port.
+// Once the server starts, it logs a message to the console indicating where it is running.
+app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}`);
+});
