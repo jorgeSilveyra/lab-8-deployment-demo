@@ -153,7 +153,7 @@ problemButton.addEventListener('click', () => {
     reset_problem();
 });
 
-async function endGame(fail_message){
+function endGame(fail_message){
     gameOver = true;
 
     const failText = document.createElement("p");
@@ -161,20 +161,16 @@ async function endGame(fail_message){
     failText.id = "fail_text"
 
     endSection.append(failText);
-    try{
-        await fetch("/submit_score", {
-            method: "POST",
-            body: JSON.stringify({
-                score: points,
-                game_id: 3
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        });
-    } catch (e){
-        console.log(e);
-    }
-
+    fetch("/submit_score", {
+        method: "POST",
+        body: JSON.stringify({
+            score: points,
+            game_id: 4
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+   
     failText.textContent = `You ${fail_message} and the game has ended. Your score has been recorded. Thank you for playing!`;
 }

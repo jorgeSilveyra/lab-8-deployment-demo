@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <link rel="stylesheet" href="css/login_styles.css">
+
+    <h1>Leaderboards</h1>
+
+    <h3>David's Game</h3>
+    <ol>
+        <% david_game.forEach(player =>{ %>
+            <li><%= player.username%>, <%= player.score%></li>
+        <% }); %>
+    </ol>
+
+    <h3>CJ's Game</h3>
+
+    <p>
+        <a href="/home">Back to Homepage</a>
+    </p>
+</body>
+</html>
