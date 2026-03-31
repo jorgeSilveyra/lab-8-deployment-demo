@@ -2,31 +2,41 @@
 const inputText = document.getElementById('string-input');
 const timerStartBtn = document.getElementById('start-button');
 const timerFinishBtn = document.getElementById('finish');
+const resetBtn = document.getElementById('reset');
+const timerText = document.getElementById('timer-text');
+const timerPopUp = document.getElementById('timer-popup');
+const targetTextDisplay = document.getElementById('target-text');
+
 
 // Button Events
 timerStartBtn.addEventListener('click', startTimer);
-timerFinishBtn.addEventListener('click', inputScore);
-
-// Pop Up Messages
-const timerPopUp = document.getElementById('timer-popup');
+timerFinishBtn.addEventListener('click', finishGame);
+resetBtn.addEventListener('click', resetGame);
 
 
-// Timer Functions
-let timerInterval = null; //prevent speed up when start button is clicked multiple times
-let timerDurSaved = 25*60; // default duration in seconds, used for automating
-let timerDurationSec = timerDurSaved; // default duration in seconds
+// Vars
+let timerInterval = null;
+let time = 0;
+let targetText = "abcdefghijklmnopqrstuvwxyz!?$%";
+targetTextDisplay.textContent = targetText;
+inputText.disabled = true;
 
 function startTimer() {
     if (timerInterval) return; // Prevent multiple intervals from being set
+    time = 0;
+    show();
     timerPopUp.textContent = ""; // make sure popup doesn't show
-    timerInterval = setInterval(() => {
-        timerDurationSec++;
 
-        if (timerInterval) {
-            timerPopUp.textContent = "Nice Job!"
-            timerDurationSec = 0;
-            stopTimer();
-        }
+    // Enable typing
+    inputText.disabled = false;
+    inputText.value = "";
+    inputText.focus();
+
+    // Disable start button
+    timerStartBtn.disabled = true;
+
+    timerInterval = setInterval(() => {
+        time++;
         show();
     }, 1000);
 }
@@ -36,33 +46,55 @@ function stopTimer() {
         clearInterval(timerInterval); // stop the timer
         timerInterval = null; // set back to null
     }
+    inputText.disabled = true;
+    timerStartBtn.disabled = false;
     show();
 }
 
-function resetTimer() {
+function finishGame(){
+    if (!timerInterval) return; // prevent clicking when not running
+    const userString = inputText.value;
+
+    if (userString === targetText) {
+        stopTimer();
+        const finalTime = formatTime(time);
+        const score = calculateScore(time);
+
+        timerPopUp.textContent = "Finished in " + finalTime + " | Score: " + score;
+
+    } else {
+        timerPopUp.textContent = "Not Correct Yet, Keep Trying!";
+    }
+}
+
+function resetGame() {
     stopTimer();
-    timerPopUp.textContent = ""; // make sure popup doesn't show
-    timerDurationSec = 0; // reset to 0 minutes
+    time = 0; 
     show();
-}
 
-function inputScore() {
-    if (timerInterval !== null) return; // make sure timer isn't running
-    const input = String(inputText.value);
-    if (minutes < 1) return; // prevent invalid input
-    timerDurSaved = minutes * 60; // save the duration for resetting
-    timerDurationSec = timerDurSaved; // set the timer to the new duration
-    show();
+    inputText.value = "";
+    inputText.disabled = true;
+
+    timerPopUp.textContent = "";
+    timerStartBtn.disabled = false; // turn on start button again
 }
 
 // Helper Functions
 function show() {
-    timerText.textContent = formatTime(timerDurationSec);
-    cdText.textContent = formatTime(cdDurationSec);
+    timerText.textContent = formatTime(time);
 }
 
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+}
+
+function calculateScore(time){
+    let score = 1000 - time*10;
+    if (score < 0) {
+        score = 0;
+    }
+
+    return score;
 }

@@ -1,0 +1,32 @@
+body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(255, 239, 65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#string-input:focus{
+    border-color: blueviolet;
+}
+
+button:hover {
+    background-color: #3cbd35;
+}
+
+button:hover {
+    background-color: #ff4e4e;
+}
+
+#timer-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #222;
+    margin-top: 20px;
+}
+
+#timer-popup {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
