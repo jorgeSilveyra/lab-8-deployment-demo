@@ -60,6 +60,17 @@ function finishGame(){
         const finalTime = formatTime(time);
         const score = calculateScore(time);
 
+        fetch("/submit_score", {
+            method: "POST",
+            body: JSON.stringify({
+                score: score,
+                game_id: 5
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
+
         timerPopUp.textContent = "Finished in " + finalTime + " | Score: " + score;
 
     } else {

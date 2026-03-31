@@ -13,6 +13,7 @@ INSERT INTO GameDefinitions VALUES
 (NULL, "Pac-Man", "Player controls Pac-Man and goes around a map eating ghosts, cherries, and dots for points. The game ends when Pac-Man hits a ghost when it cannot eat ghosts."),
 (NULL, "Snake", "Player controls a snake that eats apples for points and grows every time an apple is eaten. The game ends when the snake collides with itself."),
 (NULL, "DavidGame", "Player answers multiplication questions. They gain a point for every correct answer. They have 3 seconds to answer each question. If they give an incorrect answer or run out of time, they lose.");
+(NULL, "CJGame", "Player types the text as fast as possible. The final score is calculated based off of how fast they type the text and hit finish. The text must be absolutely correct for the timer to stop.");
 
 INSERT INTO GamePlays VALUES
 (NULL, 1, 1, 1200),
