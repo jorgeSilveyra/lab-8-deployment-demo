@@ -119,9 +119,11 @@ app.get('/leaderboard', (req, res) => {
   logger.write(`[INFO] Player with username: ${username} accessed /leaderboard. Route: /leaderboard Method: GET`)
 
   const david_info = reportModel.get_top_5_players(4);
+  const cj_info = reportModel.get_top_5_players(5);
 
   res.render('leaderboard', {
-    david_game: david_info
+    david_game: david_info,
+    cj_game: cj_info
   });
 });
 
