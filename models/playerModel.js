@@ -84,6 +84,13 @@ class PlayerModel {
     }
     
   }
+
+  getAll() {
+    const query = 'Select * From Players';
+    const stmt = this.db.prepare(query);
+    const info = stmt.all();
+    return info;
+  }
 }
 
 module.exports = PlayerModel;

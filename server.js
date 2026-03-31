@@ -152,6 +152,19 @@ app.get('/david', (req, res) => {
   res.redirect("/david_game.html");
 });
 
+// cj game
+app.get('/cj', (req, res) => {
+  if(username == ""){
+    logger.write("[WARN] Player attempted to access /cj before logging in. Redirecting to /login page. Route: /cj Method: GET");
+    res.redirect("/");
+    return;
+  }
+
+  logger.write(`[INFO] Player with username: ${username} accessed /cj. Route: /cj Method: GET`)
+
+  res.redirect("/cj_game.html");
+});
+
 // Start the server and make it listen on the specified port.
 // Once the server starts, it logs a message to the console indicating where it is running.
 app.listen(PORT, () => {

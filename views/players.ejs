@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Directory</title>
+</head>
+<body>  
+
+    <p>Here are some items:</p>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Created At</th>
+        </tr>
+        <% player_items.forEach(player_obj => { %>
+            <tr>
+                <th><%= player_obj.id %></th>
+                <th><a href="players/<%= player_obj.id %>"><%= player_obj.username %></a></a></th>
+                <th><%= player_obj.email %></th>
+                <th><%= player_obj.created_at %></th>
+            </tr>
+        <% }); %>
+    </table>
+
+    <a href="/new-player">Create New Player</a>
+</body>
+</html>
