@@ -77,7 +77,13 @@ class ReportModel {
     }
 
     get_player_scores(player_id){
-        const query = "SELECT gd.name"
+        const query = "SELECT gd.name, gp.score FROM GamePlays gp JOIN Players p ON p.player_id = gp.player_id JOIN GameDefinitions gd ON gp.game_id = gd.game_id WHERE gp.player_id = ?";
+
+        const stmt = this.db.prepare(query);
+
+        const info = stmt.all(player_id);
+
+        return info;
     }
 }
 
