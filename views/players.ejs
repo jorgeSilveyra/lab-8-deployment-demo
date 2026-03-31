@@ -4,8 +4,9 @@
     <title>Player Directory</title>
 </head>
 <body>  
+    <link rel="stylesheet" href="/css/players_styles.css">
 
-    <p>Here are some items:</p>
+    <h1>Player Directory</h1>
 
     <table>
         <tr>
@@ -16,8 +17,8 @@
         </tr>
         <% player_items.forEach(player_obj => { %>
             <tr>
-                <th><%= player_obj.id %></th>
-                <th><a href="players/<%= player_obj.id %>"><%= player_obj.username %></a></a></th>
+                <th><%= player_obj.player_id %></th>
+                <th><a href="/player/<%= player_obj.player_id %>"><%= player_obj.username %></a></a></th>
                 <th><%= player_obj.email %></th>
                 <th><%= player_obj.created_at %></th>
             </tr>

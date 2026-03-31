@@ -5,13 +5,17 @@
 </head>
 <body>  
 
-    <h1><%= player_obj.name%>'s Profile Page</h1>
+    <h1><%= username%>'s Profile Page</h1>
 
     <ul>
-        <li>ID: <%= player_obj.id %></li>
-        <li>Username: <%= player_obj.username %></li>
-        <li>Email: <%= player_obj.email %></li>
-        <li>Created At: <%= player_obj.created_at %></li>
+        <li>ID: <%= id %></li>
+        <li>Username: <%= username %></li>
+        <li>Email: <%= email %></li>
+        <li>Created At: <%= created_at %></li>
+        <% scores.forEach(score => { %>
+            <li><%= score.name %>, <%= score.score %></li>
+        <% }); %>
+        
     </ul>
 </body>
 </html>
