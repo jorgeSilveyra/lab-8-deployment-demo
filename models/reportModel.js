@@ -75,6 +75,10 @@ class ReportModel {
 
         return info;
     }
+
+    get_player_scores(player_id){
+        const query = "SELECT gd.name"
+    }
 }
 
 module.exports = ReportModel;
