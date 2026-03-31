@@ -142,6 +142,13 @@ app.post('/submit_score', (req, res) => {
 });
 
 app.get('/players', (req, res) => {
+  if(username == ""){
+    logger.write("[WARN] Player attempted to access /players before logging in. Redirecting to /login page.  Route: /players Method: GET");
+    res.redirect("/");
+    return;
+  }
+
+  logger.write("[INFO] Player accessing /players Route: /players Method: GET");
   const info = playerModel.getAll();
   console.log(info);
   res.render("players", {
@@ -150,6 +157,13 @@ app.get('/players', (req, res) => {
 });
 
 app.get("/player/:id", (req, res) =>{
+  if(username == ""){
+    logger.write(`[WARN] Player attempted to access /players/${req.params.id} before logging in. Redirecting to /login page.  Route: /players/${req.params.id} Method: GET`);
+    res.redirect("/");
+    return;
+  }
+
+    logger.write(`[INFO] Player accessing /players/${req.params.id} Route: /players/${req.params.id} Method: GET`);
     const player_info = playerModel.retrieve(req.params.id);
     const player_scores = reportModel.get_player_scores(req.params.id);
     res.render('player', {

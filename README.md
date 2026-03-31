@@ -32,9 +32,9 @@ The lab fulfills the following requirements set by the lab instructions:
 - The server runs without crashing
 - All required routes are implemented and work, with their pages being fully developed.
 - Data persists in the database and in addition the CLI and Web server match in their data.
-- Each partner has implemented a working game that utilizes user input in a creative fashion.
+- Both members have created a working game that has creative components.
 - Logging has been implemented.
-- The README.md file has been PARTIALLY completed according to previous and current lab instructions.
+- The README.md file has been completed according to previous and current lab instructions.
 
 ## Usage Instructions
 When visiting the root of the server, `/`, the user is greeted with a login page. The user must login to the website to continue. They may either enter their username or create a new player. If the user enters a username that does not already exist, they will be automatically redirected to the create player page when clicking login. When creating a player, please note:
