@@ -14,7 +14,9 @@
     </ol>
 
     <h3>CJ's Game</h3>
-
+        <% cj_game.forEach(player =>{ %>
+            <li><%= player.username%>, <%= player.score%></li>
+        <% }); %>
     <p>
         <a href="/home">Back to Homepage</a>
     </p>

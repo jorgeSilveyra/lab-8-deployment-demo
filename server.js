@@ -141,6 +141,28 @@ app.post('/submit_score', (req, res) => {
   res.sendStatus(200);
 });
 
+app.get('/players', (req, res) => {
+  const info = playerModel.getAll();
+  console.log(info);
+  res.render("players", {
+    player_items: info
+  });
+});
+
+app.get("/player/:id", (req, res) =>{
+    const player_info = playerModel.retrieve(req.params.id);
+    const player_scores = reportModel.get_player_scores(req.params.id);
+    res.render('player', {
+        // In the 'user_items' array of JavaScript objects, for each object, u, if u.id == :id, or the id parameter given by the GET request, then pass that object
+        username: player_info.username,
+        id: player_info.player_id,
+        email: player_info.email,
+        created_at: player_info.created_at,
+        scores: player_scores
+    });
+});
+
+
 // David Game -----------------------------------------------------------
 app.get('/david', (req, res) => {
   if(username == ""){
@@ -154,7 +176,7 @@ app.get('/david', (req, res) => {
   res.redirect("/david_game.html");
 });
 
-// cj game
+// cj game ----------------------------------------------------------------
 app.get('/cj', (req, res) => {
   if(username == ""){
     logger.write("[WARN] Player attempted to access /cj before logging in. Redirecting to /login page. Route: /cj Method: GET");
