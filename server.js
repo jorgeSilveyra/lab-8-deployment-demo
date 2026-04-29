@@ -9,7 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Define a constant for the port number on which the server will listen.
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+app.listen(PORT);
 
 const path = require('path');
 
@@ -206,5 +207,5 @@ app.get('/cj', (req, res) => {
 // Start the server and make it listen on the specified port.
 // Once the server starts, it logs a message to the console indicating where it is running.
 app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+  console.log(`Server is running at ${PORT}`);
 });
