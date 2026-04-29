@@ -4,7 +4,8 @@
   "description": "[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/YSW3Q7HE) # Lab-8",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/cs205-sp-26/lab-8-dj#readme",
   "dependencies": {
+    "better-sqlite3": "^12.9.0",
     "ejs": "^5.0.1",
     "express": "^5.2.1"
   }
